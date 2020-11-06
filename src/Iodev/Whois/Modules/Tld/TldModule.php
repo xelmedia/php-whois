@@ -124,6 +124,20 @@ class TldModule extends Module
     /**
      * @param string $domain
      * @param TldServer $server
+     * @return array
+     * @throws ServerMismatchException
+     * @throws ConnectionException
+     * @throws WhoisException
+     */
+    public function loadDomainInfoWithResponse($domain, TldServer $server = null)
+    {
+        $servers = $server ? [$server] : $this->matchServers($domain);
+        return $this->loadDomainData($domain, $servers);
+    }
+
+    /**
+     * @param string $domain
+     * @param TldServer $server
      * @return TldInfo
      * @throws ServerMismatchException
      * @throws ConnectionException

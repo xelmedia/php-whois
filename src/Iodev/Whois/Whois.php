@@ -107,6 +107,18 @@ class Whois
 
     /**
      * @param string $domain
+     * @return array
+     * @throws ServerMismatchException
+     * @throws ConnectionException
+     * @throws WhoisException
+     */
+    public function loadDomainInfoWithResponse($domain)
+    {
+        return $this->getTldModule()->loadDomainInfoWithResponse($domain);
+    }
+
+    /**
+     * @param string $domain
      * @return TldInfo
      * @throws ServerMismatchException
      * @throws ConnectionException
